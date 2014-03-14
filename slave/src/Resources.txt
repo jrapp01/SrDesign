@@ -1,0 +1,10 @@
+PIC I/O Resources
+
+
+
+Mike Roe: http://www.mikroe.com/chapters/view/4/chapter-3-i-o-ports/
+
+Northwestern Mechatronics: http://hades.mech.northwestern.edu/images/2/29/Ch01.pdf
+
+Umass PIC: http://umassamherstm5.org/tech-tutorials/pic32-tutorials/pic32mx220-tutorials/1-basic-digital-io-220
+
