@@ -82,12 +82,10 @@ long long timer;            //For velocity timing; updated by core timer
 
 //Key states
 typedef enum{
-    GET_MIN,
-    GET_MAX,
     GET_ON, //State for collecting note-on information
     GET_OFF
 }state;
-state keyState[16]={GET_MIN};
+state keyState[16]={GET_ON};
 
 int adcread;
 const int threshold = 40;       //TODO: Optimize arbitrary threshold setting
@@ -128,58 +126,11 @@ void __ISR(_ADC_VECTOR, IPL7AUTO) ADCHandle(void){
         adcread = ReadADC10(i);
 
         switch(keyState[i]){
-
-        case GET_MIN:
-            //treat the first sample on system start as minimum
-            min[i] = adcread;
-            keyState[i] = GET_MAX;
-            break;
-
-        case GET_MAX:
-            if(adcread-max[i] > 20)
-                    max[i] = adcread;
-            else if(max[i]-adcread > 20){
-                max[i] += 20;
-                samp1[i] = (max[i]+4*min[i])/5;
-                samp2[i] = (4*max[i]+min[i])/5;
-                keyState[i] = GET_OFF;
-            }
-
-            break;
-
-/*        case GET_SAMP1:
-            // 20%
-            if(adcread >= samp1[i]){
-                velocity[i][0] = timer;
-                keyState[i] = GET_SAMP2;
-            }
-            break;
-
-        case GET_SAMP2:
-            // 80%
-            if(adcread >= samp2[i]){
-                velocity[i][1] = timer-velocity[i][0];
-                noteOn(i, velocity[i][1]);
-                keyState[i] = GET_OFF;
-            }
-            else if(adcread < samp1[i]){
-                keyState[i] = GET_SAMP1;
-            }
-            break;
-*/
         case GET_ON:
-            /*if(adcread >= samp2[i]){
-                velocity[i][1] = timer-velocity[i][0];
-                noteOn(i, velocity[i][1]);
-                keyState[i] = GET_OFF;
-            }
-            else if(adcread < samp1[i]){
-                keyState[i] = GET_ON;
-            }*/
             // Previous force value moved into bin 0
             // Bin 1 gets new value from ADC
             forceData[i][0] = forceData[i][1];
-            forceData[i][0] = adcread;
+            forceData[i][1] = adcread;
 
             // Previous slope bit moved into bin 0
             // New slope bit determined from backward differentiator
@@ -206,7 +157,7 @@ void __ISR(_ADC_VECTOR, IPL7AUTO) ADCHandle(void){
 
         case GET_OFF:
             //TODO: Change this to digital input from comparator
-            if(abs(adcread-min[i]) < 2){
+            if(1){
                 noteOff(i);
                 keyState[i] = GET_ON;
             }
