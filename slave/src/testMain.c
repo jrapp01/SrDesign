@@ -91,6 +91,8 @@ int adcread;
 char noteOffBit;                //variable to hold value of bit for note off determination
 unsigned int bitMap[16]={BIT_0,BIT_1,BIT_2,BIT_3,BIT_6,BIT_7,BIT_8,BIT_9,BIT_12,BIT_13,BIT_14,BIT_15};    //Maps digital pin to corresponding ADC channel
 
+int testSequence[25] = {0,1,2,3,4,5,14,19,30,48,59,65,81,104,233,450,999,781,617,23,12,16,10,0};
+
 const int threshold = 40;       //TODO: Optimize arbitrary threshold setting
 int velocity[16][2]={0};        //Record timestamps to extract note-on velocity
 int forceData[16][2]={0};       //Collect FSR hammer force data
@@ -163,7 +165,8 @@ void __ISR(_ADC_VECTOR, IPL7AUTO) ADCHandle(void){
             // bitMap is an array that correlates the index i of the ADC to the
             // corresponding digital NoteOff pin
             //If the pin is high, note-off has been triggered
-            if(mPORTAReadBits(bitMap(i)) == 1){
+            noteOffBit = mPORTGReadBits(bitMap[i]);
+            if(noteOffBit == 1){
                 noteOff(i);
                 keyState[i] = GET_ON;
             }
