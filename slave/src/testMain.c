@@ -15,7 +15,7 @@
  *   limitations under the License.
  *
  *   File: main.c
- * 
+ *
  *   Description: Includes hardware configuration, functions to send note data
  *   over parallel port (PMP), and ISR to continuously sample analog inputs
  *   and extract note on/off and velocity info from the inputs.
@@ -42,7 +42,7 @@
 #pragma config CP       = OFF           // Code Protect
 #pragma config BWP      = OFF           // Boot Flash Write Protect
 #pragma config PWP      = OFF           // Program Flash Write Protect
-#pragma config ICESEL   = ICS_PGx2      // ICE/ICD Comm Channel Select
+#pragma config ICESEL   = ICS_PGx1      // ICE/ICD Comm Channel Select
 #pragma config DEBUG    = OFF            // Debugger Disabled for Starter Kit
 
 #define SYS_FREQ         (80000000)
@@ -88,6 +88,9 @@ typedef enum{
 state keyState[16]={GET_ON};
 
 int adcread;
+char noteOffBit;                //variable to hold value of bit for note off determination
+unsigned int bitMap[16]={BIT_0,BIT_1,BIT_2,BIT_3,BIT_6,BIT_7,BIT_8,BIT_9,BIT_12,BIT_13,BIT_14,BIT_15};    //Maps digital pin to corresponding ADC channel
+
 const int threshold = 40;       //TODO: Optimize arbitrary threshold setting
 int velocity[16][2]={0};        //Record timestamps to extract note-on velocity
 int forceData[16][2]={0};       //Collect FSR hammer force data
@@ -157,7 +160,10 @@ void __ISR(_ADC_VECTOR, IPL7AUTO) ADCHandle(void){
 
         case GET_OFF:
             //TODO: Change this to digital input from comparator
-            if(1){
+            // bitMap is an array that correlates the index i of the ADC to the
+            // corresponding digital NoteOff pin
+            //If the pin is high, note-off has been triggered
+            if(mPORTAReadBits(bitMap(i)) == 1){
                 noteOff(i);
                 keyState[i] = GET_ON;
             }
@@ -173,6 +179,7 @@ void __ISR(_TIMER_2_VECTOR, IPL5) T2Handle(void){
 }
 
 int main(void){
+    mPORTASetPinsDigitalIn(0xFFFF); //Enable all port A pins as digital inputs
     mPORTBSetPinsAnalogIn(0xFFFF);             //Enable all analog
     mPORTDSetPinsDigitalOut(BIT_0 | BIT_1 | BIT_8);
 
