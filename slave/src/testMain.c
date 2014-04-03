@@ -203,7 +203,7 @@ int main(void){
     ConfigIntTimer2(T2_INT_ON | T2_INT_PRIOR_5 | T2_INT_SUB_PRIOR_2);
     EnableIntT2;
 
-    while(1){
+   while(1){
         //Blink so we know we're still running
         DelayMs(1000);
         mPORTDToggleBits(BIT_0);

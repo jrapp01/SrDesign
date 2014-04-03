@@ -1269,23 +1269,23 @@ END GROUP
  .debug_pubnames
                 0x0000079b       0x28 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
 
-.debug_info     0x00000000     0x937d
+.debug_info     0x00000000     0x930d
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000     0x3c6e build/PIC32_USB_Starter_Kit_II/production/_ext/1961590870/usb_device.o
- .debug_info    0x00003c6e     0x12fd build/PIC32_USB_Starter_Kit_II/production/_ext/1360937237/delay.o
- .debug_info    0x00004f6b     0x22e8 build/PIC32_USB_Starter_Kit_II/production/_ext/1360937237/main.o
- .debug_info    0x00007253     0x17f7 build/PIC32_USB_Starter_Kit_II/production/_ext/1360937237/usb_descriptors.o
- .debug_info    0x00008a4a       0xbf c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libmchp_peripheral_32MX795F512L.a(pcache.o)
- .debug_info    0x00008b09       0xb4 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libmchp_peripheral_32MX795F512L.a(int_enable_interrupts_lib.o)
- .debug_info    0x00008bbd       0xb6 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libmchp_peripheral_32MX795F512L.a(int_disable_interrupts_lib.o)
- .debug_info    0x00008c73       0xb6 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libmchp_peripheral_32MX795F512L.a(int_restore_interrupts_lib.o)
- .debug_info    0x00008d29       0xbc c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libmchp_peripheral_32MX795F512L.a(int_enable_mv_int_lib.o)
- .debug_info    0x00008de5      0x196 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libmchp_peripheral_32MX795F512L.a(int_tbl_lib.o)
- .debug_info    0x00008f7b       0xde c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
- .debug_info    0x00009059       0xb8 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-on-reset.o)
- .debug_info    0x00009111       0xc0 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
- .debug_info    0x000091d1       0xda c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
- .debug_info    0x000092ab       0xd2 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
+ .debug_info    0x00000000     0x3c52 build/PIC32_USB_Starter_Kit_II/production/_ext/1961590870/usb_device.o
+ .debug_info    0x00003c52     0x12e1 build/PIC32_USB_Starter_Kit_II/production/_ext/1360937237/delay.o
+ .debug_info    0x00004f33     0x22cc build/PIC32_USB_Starter_Kit_II/production/_ext/1360937237/main.o
+ .debug_info    0x000071ff     0x17db build/PIC32_USB_Starter_Kit_II/production/_ext/1360937237/usb_descriptors.o
+ .debug_info    0x000089da       0xbf c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libmchp_peripheral_32MX795F512L.a(pcache.o)
+ .debug_info    0x00008a99       0xb4 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libmchp_peripheral_32MX795F512L.a(int_enable_interrupts_lib.o)
+ .debug_info    0x00008b4d       0xb6 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libmchp_peripheral_32MX795F512L.a(int_disable_interrupts_lib.o)
+ .debug_info    0x00008c03       0xb6 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libmchp_peripheral_32MX795F512L.a(int_restore_interrupts_lib.o)
+ .debug_info    0x00008cb9       0xbc c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libmchp_peripheral_32MX795F512L.a(int_enable_mv_int_lib.o)
+ .debug_info    0x00008d75      0x196 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libmchp_peripheral_32MX795F512L.a(int_tbl_lib.o)
+ .debug_info    0x00008f0b       0xde c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-bootstrap-exception-handler.o)
+ .debug_info    0x00008fe9       0xb8 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-on-reset.o)
+ .debug_info    0x000090a1       0xc0 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-on-bootstrap.o)
+ .debug_info    0x00009161       0xda c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(default-general-exception-handler.o)
+ .debug_info    0x0000923b       0xd2 c:/program files (x86)/microchip/xc32/v1.22/bin/../lib/gcc/pic32mx/4.5.2/../../../../pic32mx/lib\libpic32.a(defaultinterrupt.o)
 
 .debug_abbrev   0x00000000      0xb7d
  *(.debug_abbrev)
