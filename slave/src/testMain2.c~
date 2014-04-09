@@ -49,16 +49,8 @@
 #define TICKS_SEC         10000
 #define CORE_RATE        (SYS_FREQ/2)/TICKS_SEC
 
-//Change Notice Pins Configuration
-#define CONFIG (CN_ON | CN_FRZ_OFF | CN_IDLE_CON)
-#define PINS (CN0_ENABLE | CN1_ENABLE | CN8_ENABLE | CN9_ENABLE | \
-		CN10_ENABLE | CN11_ENABLE | CN15_ENABLE | CN16_ENABLE | \
-		CN17_ENABLE | CN18_ENABLE | CN19_ENABLE | CN20_ENABLE | \
-		CN21_ENABLE)
-#define PULLUPS (CN_PULLUP_DISABLE_ALL)
-#define INTERRUPT (CHANGE_INT_ON | CHANGE_INT_PRI_1)
-
 //ADC Configuration
+
 #define CONFIG1 (ADC_FORMAT_INTG | ADC_CLK_AUTO | ADC_AUTO_SAMPLING_ON | \
                  ADC_IDLE_CONTINUE | ADC_MODULE_ON)
 #define CONFIG2 (ADC_SAMPLES_PER_INT_16 | ADC_BUF_16 | ADC_ALT_INPUT_OFF | \
@@ -91,13 +83,13 @@ long long timer;            //For velocity timing; updated by core timer
 //Key states
 typedef enum{
     GET_ON, //State for collecting note-on information
-    GET_NEXT
+    GET_OFF
 }state;
 state keyState[16]={GET_ON};
 
-//int adcread;
-//char noteOffBit;                //variable to hold value of bit for note off determination
-//unsigned int bitMap[16]={BIT_0,BIT_1,BIT_2,BIT_3,BIT_6,BIT_7,BIT_8,BIT_9,BIT_12,BIT_13,BIT_14,BIT_15};    //Maps digital pin to corresponding ADC channel
+int adcread;
+char noteOffBit;                //variable to hold value of bit for note off determination
+unsigned int bitMap[16]={BIT_0,BIT_1,BIT_2,BIT_3,BIT_6,BIT_7,BIT_8,BIT_9,BIT_12,BIT_13,BIT_14,BIT_15};    //Maps digital pin to corresponding ADC channel
 
 //int testSequence[25] = {0,1,2,3,4,5,14,19,30,48,59,65,81,104,233,450,999,781,617,23,12,16,10,0};
 
@@ -163,21 +155,21 @@ void __ISR(_ADC_VECTOR, IPL7AUTO) ADCHandle(void){
             // Else keep searching for noteOn conditions
             if (slopeData[i][1]<slopeData[i][0] && forceData[i][0] > threshold){
                 noteOn(i, forceData[i][0]);
-                keyState[i] = GET_NEXT;
+                keyState[i] = GET_OFF;
             }else{
                 keyState[i] = GET_ON;
             }
             break;
 
-        case GET_NEXT:
-            // Get_next is a state to ensure that the same impulse from the
-            // FSR does not trigger multiple Note_on commands.
-            // This state makes sure that the analog value has gone back down 
-            // below the threshold we set to ensure that the next detected
-            // peak is actually a new note
-            //noteOffBit = mPORTGReadBits(bitMap[i]);
-            if(adcread < threshold){
-            	    keyState[i] = GET_ON;
+        case GET_OFF:
+            //TODO: Change this to digital input from comparator
+            // bitMap is an array that correlates the index i of the ADC to the
+            // corresponding digital NoteOff pin
+            //If the pin is high, note-off has been triggered
+            noteOffBit = mPORTGReadBits(bitMap[i]);
+            if(noteOffBit == 1){
+                noteOff(i);
+                keyState[i] = GET_ON;
             }
             break;
 
@@ -191,59 +183,31 @@ void __ISR(_TIMER_2_VECTOR, IPL5) T2Handle(void){
 }
 
 int main(void){
-	// Configure the device for maximum performance, but do not change the PBDIV clock divisor.
-	// Given the options, this function will change the program Flash wait states,
-	// RAM wait state and enable prefetch cache, but will not change the PBDIV.
-	// The PBDIV value is already set via the pragma FPBDIV option above.
-	SYSTEMConfig(SYS_FREQ, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
-	
-	//STEP 1A. Disable all interrupts
-	mINTDisableSystemMultiVectoredInt(); 
-	
-	//STEP 1B. Set pins for digital inputs
-	mPORTCSetPinsDigitalIn(BIT_13 | BIT_14); //CN0,1
-	mPORTDSetPinsDigitalIn(BIT_6 | BIT_7 | BIT_13 | BIT_14 | BIT_15); //CN15,16,19,20,21
-	mPORTFSetPinsDigitalIn(BIT_4 | BIT_5); //CN17,18
-	mPORTGSetPinsDigitalIn(BIT_6 | BIT_7 | BIT_8 | BIT_9); //CN8,9,10,11
-	
-		// Set pins for analog inputs
-		mPORTBSetPinsAnalogIn(0xFFFF);             //Enable all analog
-		
-		// Set pins for digital outputs (LED pins)
-		mPORTDSetPinsDigitalOut(BIT_0 | BIT_1 | BIT_8);
-	
-	// STEP 2. setup the change notice options
-	mCNOpen(CONFIG, PINS, PULLUPS); 
-	
-	// STEP 3. read port(s) to clear mismatch
-	unsigned int dummy = mPORTDRead();
-	
-	// STEP 4. clear change notice interrupt flag
-	ConfigIntCN(INTERRUPT);
-	
-	
-	CloseADC10();
-	SetChanADC10(INITCH);
-	OpenADC10(CONFIG1, CONFIG2, CONFIG3, CFGPORT, CFGSCAN);
-	ConfigIntADC10(CFGINT);
-	EnableADC10();
-	
-	mPMPOpen(PMP_CONTROL, PMP_MODE, PMP_PORT, PMP_INT);
-	mPMPEnable();
-	
-	mPORTDClearBits(BIT_0 | BIT_1 | BIT_8); //Clear LEDs
-	
-	// STEP 5. enable multi-vector interrupts
-	INTEnableSystemMultiVectoredInt();
-	
-	OpenTimer2(T2_ON | T2_PS_1_64, 256);
-	ConfigIntTimer2(T2_INT_ON | T2_INT_PRIOR_5 | T2_INT_SUB_PRIOR_2);
-	EnableIntT2;
+    mPORTASetPinsDigitalIn(0xFFFF); //Enable all port A pins as digital inputs
+    mPORTBSetPinsAnalogIn(0xFFFF);             //Enable all analog
+    mPORTDSetPinsDigitalOut(BIT_0 | BIT_1 | BIT_8);
 
-	while(1){
-	//Blink so we know we're still running
-	DelayMs(1000);
-	mPORTDToggleBits(BIT_0);
-	}
-	return 0;
+    SYSTEMConfig(SYS_FREQ, SYS_CFG_WAIT_STATES | SYS_CFG_PCACHE);
+    CloseADC10();
+    SetChanADC10(INITCH);
+    OpenADC10(CONFIG1, CONFIG2, CONFIG3, CFGPORT, CFGSCAN);
+    ConfigIntADC10(CFGINT);
+    EnableADC10();
+
+    mPMPOpen(PMP_CONTROL, PMP_MODE, PMP_PORT, PMP_INT);
+    mPMPEnable();
+
+    mPORTDClearBits(BIT_8);
+    INTEnableSystemMultiVectoredInt();
+
+    OpenTimer2(T2_ON | T2_PS_1_64, 256);
+    ConfigIntTimer2(T2_INT_ON | T2_INT_PRIOR_5 | T2_INT_SUB_PRIOR_2);
+    EnableIntT2;
+
+   while(1){
+        //Blink so we know we're still running
+        DelayMs(1000);
+        mPORTDToggleBits(BIT_0);
+    }
+    return 0;
 }
