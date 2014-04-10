@@ -94,7 +94,7 @@ void __ISR(_EXTERNAL_0_VECTOR, IPL6) GetSlaveData(void){
         midiData.CableNumber = 0;
         midiData.CodeIndexNumber = MIDI_CIN_NOTE_ON;
         midiData.DATA_0 = 0x90;                     //Note on
-        midiData.DATA_1 = pitch + 69;               //pitch
+        midiData.DATA_1 = pitch + 67;               //pitch
         midiData.DATA_2 = vel;                      //velocity
 
         USBTxHandle = USBTxOnePacket(MIDI_EP,(BYTE*)&midiData,4);
