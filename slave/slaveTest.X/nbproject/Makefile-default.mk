@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=../src/delay.c ../src/math.c C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3.c
+SOURCEFILES_QUOTED_IF_SPACED=../src/delay.c ../src/math.c C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3_A.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1360937237/delay.o ${OBJECTDIR}/_ext/1360937237/math.o ${OBJECTDIR}/_ext/1416905830/testMain3.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1360937237/delay.o.d ${OBJECTDIR}/_ext/1360937237/math.o.d ${OBJECTDIR}/_ext/1416905830/testMain3.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1360937237/delay.o ${OBJECTDIR}/_ext/1360937237/math.o ${OBJECTDIR}/_ext/1416905830/testMain3_A.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1360937237/delay.o.d ${OBJECTDIR}/_ext/1360937237/math.o.d ${OBJECTDIR}/_ext/1416905830/testMain3_A.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1360937237/delay.o ${OBJECTDIR}/_ext/1360937237/math.o ${OBJECTDIR}/_ext/1416905830/testMain3.o
+OBJECTFILES=${OBJECTDIR}/_ext/1360937237/delay.o ${OBJECTDIR}/_ext/1360937237/math.o ${OBJECTDIR}/_ext/1416905830/testMain3_A.o
 
 # Source Files
-SOURCEFILES=../src/delay.c ../src/math.c C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3.c
+SOURCEFILES=../src/delay.c ../src/math.c C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3_A.c
 
 
 CFLAGS=
@@ -103,11 +103,11 @@ ${OBJECTDIR}/_ext/1360937237/math.o: ../src/math.c  nbproject/Makefile-${CND_CON
 	@${RM} ${OBJECTDIR}/_ext/1360937237/math.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1360937237/math.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PIC32MXSK=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../include" -MMD -MF "${OBJECTDIR}/_ext/1360937237/math.o.d" -o ${OBJECTDIR}/_ext/1360937237/math.o ../src/math.c   
 	
-${OBJECTDIR}/_ext/1416905830/testMain3.o: C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/1416905830/testMain3_A.o: C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3_A.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1416905830 
-	@${RM} ${OBJECTDIR}/_ext/1416905830/testMain3.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1416905830/testMain3.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1416905830/testMain3.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PIC32MXSK=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../include" -MMD -MF "${OBJECTDIR}/_ext/1416905830/testMain3.o.d" -o ${OBJECTDIR}/_ext/1416905830/testMain3.o C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3.c   
+	@${RM} ${OBJECTDIR}/_ext/1416905830/testMain3_A.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1416905830/testMain3_A.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1416905830/testMain3_A.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PIC32MXSK=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../include" -MMD -MF "${OBJECTDIR}/_ext/1416905830/testMain3_A.o.d" -o ${OBJECTDIR}/_ext/1416905830/testMain3_A.o C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3_A.c   
 	
 else
 ${OBJECTDIR}/_ext/1360937237/delay.o: ../src/delay.c  nbproject/Makefile-${CND_CONF}.mk
@@ -122,11 +122,11 @@ ${OBJECTDIR}/_ext/1360937237/math.o: ../src/math.c  nbproject/Makefile-${CND_CON
 	@${RM} ${OBJECTDIR}/_ext/1360937237/math.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1360937237/math.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../include" -MMD -MF "${OBJECTDIR}/_ext/1360937237/math.o.d" -o ${OBJECTDIR}/_ext/1360937237/math.o ../src/math.c   
 	
-${OBJECTDIR}/_ext/1416905830/testMain3.o: C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3.c  nbproject/Makefile-${CND_CONF}.mk
+${OBJECTDIR}/_ext/1416905830/testMain3_A.o: C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3_A.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/1416905830 
-	@${RM} ${OBJECTDIR}/_ext/1416905830/testMain3.o.d 
-	@${RM} ${OBJECTDIR}/_ext/1416905830/testMain3.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1416905830/testMain3.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../include" -MMD -MF "${OBJECTDIR}/_ext/1416905830/testMain3.o.d" -o ${OBJECTDIR}/_ext/1416905830/testMain3.o C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3.c   
+	@${RM} ${OBJECTDIR}/_ext/1416905830/testMain3_A.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1416905830/testMain3_A.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1416905830/testMain3_A.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../include" -MMD -MF "${OBJECTDIR}/_ext/1416905830/testMain3_A.o.d" -o ${OBJECTDIR}/_ext/1416905830/testMain3_A.o C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3_A.c   
 	
 endif
 
