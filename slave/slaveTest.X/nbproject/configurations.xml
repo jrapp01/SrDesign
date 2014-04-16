@@ -16,7 +16,7 @@
                    projectFiles="true">
       <itemPath>../src/delay.c</itemPath>
       <itemPath>../src/math.c</itemPath>
-      <itemPath>C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain1_C.c</itemPath>
+      <itemPath>C:/Users/Administrator/Documents/GitHub/SrDesign/slave/src/testMain3.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
